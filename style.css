@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: #000;
+    color: #ff0000;
+
+    font-family: "Press Start 2P", monospace;
+
+    overflow: hidden;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.loading-screen {
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+/* =========================
+   LOADING TEXT
+========================= */
+
+.loading-title {
+
+    font-size: clamp(20px, 4vw, 55px);
+
+    margin-bottom: 50px;
+
+    text-align: center;
+
+    text-shadow:
+        3px 3px 0 #330000;
+}
+
+
+/* Animation des "..." */
+
+.dots::after {
+
+    content: "";
+
+    animation: loadingDots 1.2s steps(4, end) infinite;
+}
+
+@keyframes loadingDots {
+
+    0% {
+        content: "";
+    }
+
+    25% {
+        content: ".";
+    }
+
+    50% {
+        content: "..";
+    }
+
+    75%,
+    100% {
+        content: "...";
+    }
+}
+
+
+/* =========================
+   BARRE
+========================= */
+
+.progress-wrapper {
+
+    width: min(900px, 85vw);
+}
+
+
+/* Contour de la barre */
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 35px;
+
+    border: 4px solid #ff0000;
+
+    padding: 4px;
+
+    background: #000;
+
+    image-rendering: pixelated;
+}
+
+
+/* Remplissage */
+
+#progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #ff0000;
+
+    transition: width 0.5s linear;
+
+    /*
+    Pas d'arrondi :
+    ça garde le côté 8-bit
+    */
+}
+
+
+/* =========================
+   INFOS SOUS LA BARRE
+========================= */
+
+.progress-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 15px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+#status {
+
+    margin-top: 35px;
+
+    font-size: 11px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   ENTER
+========================= */
+
+#enter {
+
+    margin-top: 40px;
+
+    padding: 15px 25px;
+
+    border: 3px solid #ff0000;
+
+    color: #ff0000;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.2s steps(2);
+}
+
+
+/* Disponible à 100% */
+
+#enter.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* Effet 8-bit au survol */
+
+#enter:hover {
+
+    background: #ff0000;
+
+    color: #000;
+}
