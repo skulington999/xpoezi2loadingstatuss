@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LOADING...</title>
 
-    <!-- Police pixel / 8-bit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="loading-screen">
+    <div class="loading-screen">
 
-        <div class="loading-title">
-            LOADING<span class="dots"></span>
+        <h1>
+            LOADING<span id="dots"></span>
+        </h1>
+
+        <div class="bar-container">
+            <div id="progress-bar"></div>
         </div>
 
-        <div class="progress-wrapper">
-
-            <div class="progress-bar">
-                <div id="progress"></div>
-            </div>
-
-            <div class="progress-info">
-                <span id="percentage">0%</span>
-                <span id="date"></span>
-            </div>
-
+        <div class="info">
+            <span id="percentage">0.00%</span>
+            <span id="date">--/--/----</span>
         </div>
 
         <div id="status">
             PLEASE WAIT...
         </div>
 
+        <button id="test-button">
+            TEST
+        </button>
+
         <a id="enter" href="archive.html">
             ENTER
         </a>
 
-    </main>
+        <div id="checkpoints"></div>
+
+    </div>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
