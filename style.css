@@ -191,3 +191,9 @@ h1 {
 
     opacity: 1;
 }
+#events,
+.events,
+.event-list,
+#event-list {
+    display: none !important;
+}
