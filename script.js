@@ -124,7 +124,7 @@ const checkpoints =
 checkpoints.style.display = "none";
 const testButton =
     document.getElementById("test-button");
-checkpoints.style.display = "none";
+testButton.style.display = "none";
 
 /* ==========================================
    DATE ACTUELLE
