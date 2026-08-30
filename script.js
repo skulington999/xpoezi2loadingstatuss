@@ -121,10 +121,10 @@ const enter =
 
 const checkpoints =
     document.getElementById("checkpoints");
-
+checkpoints.style.display = "none";
 const testButton =
     document.getElementById("test-button");
-
+checkpoints.style.display = "none";
 
 /* ==========================================
    DATE ACTUELLE
