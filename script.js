@@ -124,6 +124,7 @@ const checkpoints =
 checkpoints.style.display = "none";
 const testButton =
     document.getElementById("test-button");
+
 testButton.style.display = "none";
 
 /* ==========================================
