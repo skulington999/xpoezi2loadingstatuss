@@ -2,30 +2,18 @@
     box-sizing: border-box;
 }
 
-html,
 body {
-    width: 100%;
-    height: 100%;
     margin: 0;
-}
-
-body {
     background: #000;
     color: #ff0000;
 
     font-family: "Press Start 2P", monospace;
 
-    overflow: hidden;
+    min-height: 100vh;
 }
 
-/* =========================
-   PAGE
-========================= */
-
 .loading-screen {
-
-    width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -36,34 +24,21 @@ body {
     padding: 30px;
 }
 
+h1 {
+    font-size: clamp(22px, 5vw, 60px);
 
-/* =========================
-   LOADING TEXT
-========================= */
-
-.loading-title {
-
-    font-size: clamp(20px, 4vw, 55px);
-
-    margin-bottom: 50px;
+    margin: 0 0 50px;
 
     text-align: center;
-
-    text-shadow:
-        3px 3px 0 #330000;
 }
 
-
-/* Animation des "..." */
-
-.dots::after {
-
+#dots::after {
     content: "";
 
-    animation: loadingDots 1.2s steps(4, end) infinite;
+    animation: dots 1.2s steps(4) infinite;
 }
 
-@keyframes loadingDots {
+@keyframes dots {
 
     0% {
         content: "";
@@ -77,44 +52,26 @@ body {
         content: "..";
     }
 
-    75%,
-    100% {
+    75% {
         content: "...";
     }
 }
 
 
-/* =========================
-   BARRE
-========================= */
+/* BARRE */
 
-.progress-wrapper {
+.bar-container {
 
     width: min(900px, 85vw);
-}
-
-
-/* Contour de la barre */
-
-.progress-bar {
-
-    width: 100%;
 
     height: 35px;
 
     border: 4px solid #ff0000;
 
     padding: 4px;
-
-    background: #000;
-
-    image-rendering: pixelated;
 }
 
-
-/* Remplissage */
-
-#progress {
+#progress-bar {
 
     width: 0%;
 
@@ -122,54 +79,41 @@ body {
 
     background: #ff0000;
 
-    transition: width 0.5s linear;
-
-    /*
-    Pas d'arrondi :
-    ça garde le côté 8-bit
-    */
+    transition: width 0.3s linear;
 }
 
 
-/* =========================
-   INFOS SOUS LA BARRE
-========================= */
+/* INFOS */
 
-.progress-info {
+.info {
+
+    width: min(900px, 85vw);
 
     display: flex;
 
     justify-content: space-between;
 
-    margin-top: 15px;
+    margin-top: 12px;
 
-    font-size: 11px;
-
-    line-height: 1.5;
+    font-size: 10px;
 }
 
 
-/* =========================
-   STATUS
-========================= */
+/* STATUS */
 
 #status {
 
     margin-top: 35px;
 
     font-size: 11px;
-
-    opacity: 0.7;
 }
 
 
-/* =========================
-   ENTER
-========================= */
+/* ENTER */
 
 #enter {
 
-    margin-top: 40px;
+    margin-top: 30px;
 
     padding: 15px 25px;
 
@@ -179,17 +123,10 @@ body {
 
     text-decoration: none;
 
-    font-size: 12px;
-
     opacity: 0;
 
     pointer-events: none;
-
-    transition: opacity 0.2s steps(2);
 }
-
-
-/* Disponible à 100% */
 
 #enter.active {
 
@@ -198,12 +135,59 @@ body {
     pointer-events: auto;
 }
 
-
-/* Effet 8-bit au survol */
-
 #enter:hover {
 
     background: #ff0000;
 
     color: #000;
+}
+
+
+/* TEST */
+
+#test-button {
+
+    margin-top: 20px;
+
+    background: none;
+
+    border: 1px solid #ff0000;
+
+    color: #ff0000;
+
+    padding: 8px 12px;
+
+    font-family: inherit;
+
+    font-size: 8px;
+
+    cursor: pointer;
+}
+
+
+/* CHECKPOINTS */
+
+#checkpoints {
+
+    width: min(900px, 85vw);
+
+    margin-top: 30px;
+
+    font-size: 8px;
+
+    line-height: 2;
+
+    max-height: 150px;
+
+    overflow-y: auto;
+}
+
+.checkpoint {
+
+    opacity: 0.35;
+}
+
+.checkpoint.completed {
+
+    opacity: 1;
 }
