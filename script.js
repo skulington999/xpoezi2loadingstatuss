@@ -14,14 +14,14 @@ true  = tu choisis une date fictive
 false = vraie date actuelle
 */
 
-const TEST_MODE = false;
+const TEST_MODE = true;
 
 
 /*
 Date utilisée uniquement en mode TEST.
 */
 
-const TEST_DATE = "2026-09-30T18:00:00";
+const TEST_DATE = "2026-11-01T18:00:00";
 
 
 /* ==========================================
