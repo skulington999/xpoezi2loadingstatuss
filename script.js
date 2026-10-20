@@ -14,7 +14,7 @@ true  = tu choisis une date fictive
 false = vraie date actuelle
 */
 
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 
 /*
