@@ -1,3 +1,4 @@
+
 /* ==========================================
    AUDITIVE NIGHTMARE
    LOADING BAR
@@ -18,16 +19,6 @@ const TEST_MODE = false;
 
 /*
 Date utilisée uniquement en mode TEST.
-
-Tu peux changer cette date pour tester.
-
-Exemple :
-
-2026-08-30T18:00:00
-
-ou
-
-2026-10-31T00:00:00
 */
 
 const TEST_DATE = "2026-09-30T18:00:00";
@@ -116,16 +107,21 @@ const date =
 const status =
     document.getElementById("status");
 
-const enter =
-    document.getElementById("enter");
+const dontClick =
+    document.getElementById("dont-click");
 
 const checkpoints =
     document.getElementById("checkpoints");
-checkpoints.style.display = "none";
+
 const testButton =
     document.getElementById("test-button");
 
+
+/* MASQUER LES ELEMENTS NON UTILISES */
+
+checkpoints.style.display = "none";
 testButton.style.display = "none";
+
 
 /* ==========================================
    DATE ACTUELLE
@@ -135,9 +131,7 @@ function getCurrentTime() {
 
     if (TEST_MODE) {
 
-        return new Date(
-            TEST_DATE
-        ).getTime();
+        return new Date(TEST_DATE).getTime();
 
     }
 
@@ -161,18 +155,15 @@ function getProgress(currentTime) {
     let progress =
         (elapsed / total) * 100;
 
-
     /*
     Empêche la barre d'aller
-    en dessous de 0 ou au-dessus de 100
+    en dessous de 0 ou au-dessus de 100.
     */
 
-    progress =
-        Math.max(
-            0,
-            Math.min(100, progress)
-        );
-
+    progress = Math.max(
+        0,
+        Math.min(100, progress)
+    );
 
     return progress;
 
@@ -187,43 +178,34 @@ function displayCheckpoints(currentTime) {
 
     checkpoints.innerHTML = "";
 
-
     EVENTS.forEach(event => {
 
         const completed =
             currentTime >= event.time;
 
-
         const element =
             document.createElement("div");
-
 
         element.className =
             completed
                 ? "checkpoint completed"
                 : "checkpoint";
 
-
         const eventDate =
-            new Date(event.time)
-                .toLocaleString(
-                    "fr-FR",
-                    {
-                        day: "2-digit",
-                        month: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit"
-                    }
-                );
-
+            new Date(event.time).toLocaleString(
+                "fr-FR",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
 
         element.textContent =
             `${completed ? "[✓]" : "[ ]"} ${eventDate} — ${event.label}`;
 
-
-        checkpoints.appendChild(
-            element
-        );
+        checkpoints.appendChild(element);
 
     });
 
@@ -239,11 +221,8 @@ function update() {
     const currentTime =
         getCurrentTime();
 
-
     const progress =
-        getProgress(
-            currentTime
-        );
+        getProgress(currentTime);
 
 
     /* BARRE */
@@ -261,43 +240,46 @@ function update() {
     /* DATE */
 
     date.textContent =
-        new Date(
-            currentTime
-        ).toLocaleString(
+        new Date(currentTime).toLocaleString(
             "fr-FR"
         );
 
 
     /* CHECKPOINTS */
 
-    displayCheckpoints(
-        currentTime
-    );
+    displayCheckpoints(currentTime);
 
 
-    /* FIN */
+    /* FIN DU CHARGEMENT */
 
     if (progress >= 100) {
 
         status.textContent =
             "LOADING COMPLETE";
 
-        enter.classList.add(
-            "active"
-        );
+        /*
+        Affiche le bouton secret.
+        */
 
-    }
+        dontClick.hidden = false;
 
-    else {
+        dontClick.classList.add("active");
+
+    } else {
 
         status.textContent =
             TEST_MODE
                 ? "TEST MODE"
                 : "PLEASE WAIT...";
 
-        enter.classList.remove(
-            "active"
-        );
+        /*
+        Le bouton reste inaccessible
+        tant que le chargement n'est pas terminé.
+        */
+
+        dontClick.hidden = true;
+
+        dontClick.classList.remove("active");
 
     }
 
@@ -307,11 +289,6 @@ function update() {
 /* ==========================================
    BOUTON TEST
 ========================================== */
-
-/*
-Clique dessus pour afficher dans
-la console la date actuellement simulée.
-*/
 
 testButton.addEventListener(
     "click",
@@ -341,10 +318,7 @@ update();
 
 
 /*
-Actualisation toutes les secondes
+Actualisation toutes les secondes.
 */
 
-setInterval(
-    update,
-    1000
-);
+setInterval(update, 1000);
